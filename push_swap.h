@@ -28,6 +28,14 @@ void				pushBack(t_node *head, int content);
 void				popFront(t_node *head);
 void				popBack(t_node *head);
 int					findValue(t_node *head, int value);
+int					size(t_node *head);
 void				init(t_stack *stack, char *argv[]);
 void				sort(t_stack *stack);
+void				sa(t_stack *stack);
+void				sb(t_stack *stack);
+void				pa(t_stack *stack);
+void				pb(t_stack *stack);
+void				ra(t_stack *stack);
+void				rb(t_stack *stack);
+void				rr(t_stack *stack);
 #endif

@@ -23,10 +23,20 @@ void	init(t_stack *stack, char *argv[])
 void	sort(t_stack *stack)
 {
 	t_node* tmp = stack->a; 
-	/*ft_putendl_fd("\nPrint: ", 1);
+	t_node* tmp2 = stack->b;
+	//sa(stack);
+	//pb(stack);
+	rr(stack);
+	ft_putendl_fd("\nPrint: ", 1);
 	while (tmp)
 	{
 		ft_putnbr_fd(tmp->content, 1);
 		tmp= tmp->next;
-	}*/
+	}
+	ft_putchar_fd('\n', 1);
+	while (tmp2)
+	{
+		ft_putnbr_fd(tmp2->content, 1);
+		tmp2= tmp2->next;
+	}
 }

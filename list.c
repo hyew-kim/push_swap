@@ -98,3 +98,19 @@ int	findValue(t_node *head, int value)
 	}
 	return (0);
 }
+
+int	size(t_node *head)
+{
+	/*head and tail 제외*/
+	t_node	*node;
+	int		len;
+
+	node = head->next;
+	len = 0;
+	while (node)
+	{
+		++len;
+		node = node->next;
+	}
+	return (len);
+}

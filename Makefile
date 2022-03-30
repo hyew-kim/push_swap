@@ -5,7 +5,13 @@ CFLAGS = -g
 AR = ar rcs
 
 NAME = push_swap
-SRC = push_swap.c list.c sort.c
+SRC = push_swap.c\
+	list.c\
+	sort.c\
+	command_swap.c\
+	command_push.c\
+	command_rotate.c\
+
 OBJS = $(SRC:.c=.o)
 
 .c.o:
