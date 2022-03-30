@@ -13,8 +13,7 @@ OBJS = $(SRC:.c=.o)
 
 $(NAME): $(OBJS)
 	make -C libft/ bonus
-	cp libft/libft.a ./
-	$(CC) $(CFLAGS) $^ -o $@ 
+	$(CC) $(CFLAGS) $^ -o $@ libft/libft.a
 
 all: $(NAME)
 
