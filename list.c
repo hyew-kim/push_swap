@@ -50,5 +50,11 @@ void	pushBack(t_node *head, int content)
 
 void	remove(t_node *head, int content)
 {
-	
+	t_node	*find;
+
+	find = head;
+	while (find->content != content)
+	{
+		find = find->next;
+	}
 }
