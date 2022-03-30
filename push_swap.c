@@ -2,9 +2,20 @@
 
 int	main(int argc, char *argv[])
 {
+	t_stack	stack;
+
 	checkInput(argc, argv);
-	ft_putstr_fd("Done",1);
+	ft_putstr_fd("Check OK\n",1);
+	/*Head 뒤부터 유효한 값!*/
+	stack.a = createNode(0);
+	stack.b = createNode(0);
+	if (stack.a == NULL || stack.b == NULL)
+		printError();
+	init(&stack, argv);
+	sort(&stack);
+	exit(EXIT_SUCCESS);
 }
+
 #include <stdio.h>
 void	checkInput(int argc, char *argv[])
 {
