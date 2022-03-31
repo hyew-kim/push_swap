@@ -2,6 +2,7 @@
 int	main(int argc, char *argv[])
 {
 	t_stack	stack;
+
 	checkInput(argc, argv);
 	ft_putstr_fd("Check OK\n",1);
 	/*Head 뒤부터 유효한 값!*/
@@ -18,39 +19,55 @@ int	main(int argc, char *argv[])
 #include <stdio.h>
 void	checkInput(int argc, char *argv[])
 {
-	int			i;
-	int			j;
-	int			zero;
-	long long	num;
-	int			flag;
+	int	i;
+	char **arr;
 
 	if (argc < 2)
 		printError();
 	i = 0;
-	flag = 0;
+	arr = NULL;
 	while (++i < argc)
 	{
-		j = -1;
-		while (++j < ft_strlen(argv[i]))
+		if (ft_strchr(argv[i], ' ') == -1)
+			checkArr(argv[i]);
+		else
 		{
-			if (j != 0 && !ft_isdigit(argv[i][j]))
-				printError();
-			if (flag == 0 && argv[i][j] == '0')
-				zero++;
-			else
-				flag = 1;
+			arr = ft_split(argv[i], ' ');
+			int j = -1;
+			while (++j < ft_strlen(arr))
+				checkArr(arr[j]);
 		}
-		num = ft_atoi(argv[i]);
-		if (argv[i][0] != '0' && num == 0)
-			printError();
-		//ft_putnbr_fd(num, 1);
-		if (!ft_isdigit(argv[i][0]))
-			j--;
-		//printf("\nj: %d, zero: %d\n", j, zero);
-		if (j - zero > 10 || num > INT32_MAX || num < INT32_MIN)
-			printError();
 	}
 	return ;
+}
+
+void	checkArr(char *arr)
+{
+	int			i;
+	int			zero;
+	long long	num;
+	int			flag;
+
+	i = -1;
+	flag = 0;
+	while (++i < ft_strlen(arr))
+	{
+		if (i != 0 && !ft_isdigit(arr[i]))
+			printError();
+		if (flag == 0 && arr[i]== '0')
+			zero++;
+		else
+			flag = 1;
+	}
+	num = ft_atoi(arr);
+	if (arr[i] != '0' && num == 0)
+		printError();
+	//ft_putnbr_fd(num, 1);
+	if (!ft_isdigit(arr[0]))
+		i--;
+	//printf("\nj: %d, zero: %d\n", j, zero);
+	if (i - zero > 10 || num > INT32_MAX || num < INT32_MIN)
+		printError();
 }
 
 void	printError(void)

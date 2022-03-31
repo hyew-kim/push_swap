@@ -26,7 +26,10 @@ void	sort(t_stack *stack)
 	t_node* tmp2 = stack->b;
 	//sa(stack);
 	//pb(stack);
-	rr(stack);
+	//pb(stack);
+	//pushBack(stack->b, 99);
+	//rr(stack);
+	rrr(stack);
 	ft_putendl_fd("\nPrint: ", 1);
 	while (tmp)
 	{
