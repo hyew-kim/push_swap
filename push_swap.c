@@ -1,9 +1,7 @@
 #include "push_swap.h"
-
 int	main(int argc, char *argv[])
 {
 	t_stack	stack;
-
 	checkInput(argc, argv);
 	ft_putstr_fd("Check OK\n",1);
 	/*Head 뒤부터 유효한 값!*/
@@ -15,6 +13,7 @@ int	main(int argc, char *argv[])
 	sort(&stack);
 	exit(EXIT_SUCCESS);
 }
+
 
 #include <stdio.h>
 void	checkInput(int argc, char *argv[])

@@ -23,6 +23,7 @@ void				checkInput(int argc, char *argv[]);
 void				printError(void);
 t_node				*createNode(int content);
 int					empty(t_node *head);
+t_node				*back(t_node *head);
 void				pushFront(t_node *head, int content);
 void				pushBack(t_node *head, int content);
 void				popFront(t_node *head);
@@ -38,4 +39,7 @@ void				pb(t_stack *stack);
 void				ra(t_stack *stack);
 void				rb(t_stack *stack);
 void				rr(t_stack *stack);
+void				rra(t_stack *stack);
+void				rrb(t_stack *stack);
+void				rrr(t_stack *stack);
 #endif

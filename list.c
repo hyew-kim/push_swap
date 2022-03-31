@@ -22,6 +22,18 @@ int	empty(t_node *head)
 		return (0);
 }
 
+t_node	*back(t_node *head)
+{
+	t_node	*last_node;
+
+	last_node = head;
+	while (last_node->next)
+	{
+		last_node = last_node->next;
+	}
+	return (last_node);
+}
+
 void	pushFront(t_node *head, int content)
 {
 	t_node	*new;
@@ -47,11 +59,7 @@ void	pushBack(t_node *head, int content)
 	new = createNode(content);
 	if (new == NULL)
 		return ;
-	last_node = head;
-	while (last_node->next)
-	{
-		last_node = last_node->next;
-	}
+	last_node = back(head);
 	last_node->next = new;
 	new->prev = last_node;
 	return ;
