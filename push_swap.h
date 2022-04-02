@@ -19,7 +19,8 @@ typedef struct		s_stack
 }					t_stack;
 
 /*prototype*/
-void				checkInput(int argc, char *argv[]);
+void				checkInput(int argc, char *argv[], t_stack *stack);
+void				checkArr(char *arr, t_stack *stack);
 void				printError(void);
 t_node				*createNode(int content);
 int					empty(t_node *head);
@@ -30,7 +31,7 @@ void				popFront(t_node *head);
 void				popBack(t_node *head);
 int					findValue(t_node *head, int value);
 int					size(t_node *head);
-void				init(t_stack *stack, char *argv[]);
+void				init(t_stack *stack, int num);
 void				sort(t_stack *stack);
 void				sa(t_stack *stack);
 void				sb(t_stack *stack);

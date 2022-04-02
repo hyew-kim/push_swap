@@ -2,25 +2,21 @@
 int	main(int argc, char *argv[])
 {
 	t_stack	stack;
-
-	checkInput(argc, argv);
-	ft_putstr_fd("Check OK\n",1);
 	/*Head 뒤부터 유효한 값!*/
 	stack.a = createNode(0);
 	stack.b = createNode(0);
 	if (stack.a == NULL || stack.b == NULL)
 		printError();
-	init(&stack, argv);
+	checkInput(argc, argv, &stack);
 	sort(&stack);
 	exit(EXIT_SUCCESS);
 }
 
-
-#include <stdio.h>
-void	checkInput(int argc, char *argv[])
+void	checkInput(int argc, char *argv[], t_stack *stack)
 {
-	int	i;
-	char **arr;
+	int		i;
+	int		j;
+	char	**arr;
 
 	if (argc < 2)
 		printError();
@@ -29,19 +25,19 @@ void	checkInput(int argc, char *argv[])
 	while (++i < argc)
 	{
 		if (ft_strchr(argv[i], ' ') == -1)
-			checkArr(argv[i]);
+			checkArr(argv[i], stack);
 		else
 		{
 			arr = ft_split(argv[i], ' ');
-			int j = -1;
-			while (++j < ft_strlen(arr))
-				checkArr(arr[j]);
+			j = -1;
+			while (arr[++j])
+				checkArr(arr[j], stack);
 		}
 	}
 	return ;
 }
 
-void	checkArr(char *arr)
+void	checkArr(char *arr, t_stack *stack)
 {
 	int			i;
 	int			zero;
@@ -62,12 +58,19 @@ void	checkArr(char *arr)
 	num = ft_atoi(arr);
 	if (arr[i] != '0' && num == 0)
 		printError();
-	//ft_putnbr_fd(num, 1);
 	if (!ft_isdigit(arr[0]))
 		i--;
-	//printf("\nj: %d, zero: %d\n", j, zero);
 	if (i - zero > 10 || num > INT32_MAX || num < INT32_MIN)
 		printError();
+	init(stack, num);
+}
+
+void	init(t_stack *stack, int num)
+{
+	if (findValue(stack->a, num))
+		printError();
+	pushBack(stack->a, num);
+	return ;
 }
 
 void	printError(void)
