@@ -62,10 +62,10 @@ void	checkArr(char *arr, t_stack *stack)
 		i--;
 	if (i - zero > 10 || num > INT32_MAX || num < INT32_MIN)
 		printError();
-	init(stack, num);
+	setStack(stack, num);
 }
 
-void	init(t_stack *stack, int num)
+void	setStack(t_stack *stack, int num)
 {
 	if (findValue(stack->a, num))
 		printError();

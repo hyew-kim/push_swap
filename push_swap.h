@@ -31,7 +31,7 @@ void				popFront(t_node *head);
 void				popBack(t_node *head);
 int					findValue(t_node *head, int value);
 int					size(t_node *head);
-void				init(t_stack *stack, int num);
+void				setStack(t_stack *stack, int num);
 void				sort(t_stack *stack);
 void				sa(t_stack *stack);
 void				sb(t_stack *stack);
@@ -43,4 +43,5 @@ void				rr(t_stack *stack);
 void				rra(t_stack *stack);
 void				rrb(t_stack *stack);
 void				rrr(t_stack *stack);
+int					getPivot(t_node *head, int length);
 #endif
