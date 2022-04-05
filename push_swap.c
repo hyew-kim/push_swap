@@ -1,4 +1,5 @@
 #include "push_swap.h"
+
 int	main(int argc, char *argv[])
 {
 	t_stack	stack;
@@ -6,9 +7,10 @@ int	main(int argc, char *argv[])
 	stack.a = createNode(0);
 	stack.b = createNode(0);
 	if (stack.a == NULL || stack.b == NULL)
-		printError();
+		printError(&stack);
 	checkInput(argc, argv, &stack);
-	sort(&stack);
+	setSort(&stack);
+	freeStack(&stack);
 	exit(EXIT_SUCCESS);
 }
 
@@ -19,7 +21,7 @@ void	checkInput(int argc, char *argv[], t_stack *stack)
 	char	**arr;
 
 	if (argc < 2)
-		printError();
+		printError(stack);
 	i = 0;
 	arr = NULL;
 	while (++i < argc)
@@ -48,33 +50,50 @@ void	checkArr(char *arr, t_stack *stack)
 	flag = 0;
 	while (++i < ft_strlen(arr))
 	{
-		if (i != 0 && !ft_isdigit(arr[i]))
-			printError();
+		if (i != 0 && !ft_isdigit(arr[i])) // 부호체크
+			printError(stack);
 		if (flag == 0 && arr[i]== '0')
 			zero++;
 		else
 			flag = 1;
 	}
 	num = ft_atoi(arr);
-	if (arr[i] != '0' && num == 0)
-		printError();
 	if (!ft_isdigit(arr[0]))
 		i--;
 	if (i - zero > 10 || num > INT32_MAX || num < INT32_MIN)
-		printError();
+		printError(stack);
 	setStack(stack, num);
 }
 
 void	setStack(t_stack *stack, int num)
 {
 	if (findValue(stack->a, num))
-		printError();
+		printError(stack);
 	pushBack(stack->a, num);
 	return ;
 }
 
-void	printError(void)
+void	freeStack(t_stack *stack)
+{
+	int	lenA;
+	int	lenB;
+
+	if (stack->a == NULL || stack->b == NULL)
+		return ;
+	lenA = size(stack->a);
+	lenB = size(stack->b);
+	while (lenA-- > 0)
+		popBack(stack->a);
+	while (lenB-- > 0)
+		popBack(stack->b);
+	free(stack->a);
+	free(stack->b);
+	return ;
+}
+
+void	printError(t_stack *stack)
 {
 	ft_putstr_fd("Error\n", 2);
+	freeStack(stack);
 	exit(EXIT_FAILURE);
 }

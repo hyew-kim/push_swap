@@ -1,6 +1,7 @@
 #include "push_swap.h"
 /*List의 정보는 head에 담겨있다 !*/
 /*head 값 안 담음, tail은 null*/
+/*head 유효성 검사 안함*/
 t_node	*createNode(int content)
 {
 	t_node	*node;
@@ -97,7 +98,7 @@ int	findValue(t_node *head, int value)
 {
 	t_node	*find;
 
-	find = head;
+	find = head->next;
 	while (find)
 	{
 		if (find->content == value)

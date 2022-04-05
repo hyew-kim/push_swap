@@ -12,7 +12,7 @@ typedef	struct		s_node
 	struct s_node	*next;
 }					t_node;
 
-typedef struct		s_stack
+typedef	struct		s_stack
 {
 	t_node			*a;
 	t_node			*b;
@@ -21,7 +21,7 @@ typedef struct		s_stack
 /*prototype*/
 void				checkInput(int argc, char *argv[], t_stack *stack);
 void				checkArr(char *arr, t_stack *stack);
-void				printError(void);
+void				printError(t_stack *stack);
 t_node				*createNode(int content);
 int					empty(t_node *head);
 t_node				*back(t_node *head);
@@ -32,7 +32,8 @@ void				popBack(t_node *head);
 int					findValue(t_node *head, int value);
 int					size(t_node *head);
 void				setStack(t_stack *stack, int num);
-void				sort(t_stack *stack);
+void				freeStack(t_stack *stack);
+void				setSort(t_stack *stack);
 void				sa(t_stack *stack);
 void				sb(t_stack *stack);
 void				pa(t_stack *stack);
@@ -43,5 +44,11 @@ void				rr(t_stack *stack);
 void				rra(t_stack *stack);
 void				rrb(t_stack *stack);
 void				rrr(t_stack *stack);
-int					getPivot(t_node *head, int length);
+void				indexing(t_node *head, int **arr);
+void				sort(t_stack *stack);
+int					isSorted(t_node *head);
+void				sortFewElements(t_stack *stack, int len);
+void				sortFourAndFive(t_stack *stack, int len);
+void				aToB(t_stack *stack);
+int					checkCase(t_node *head);
 #endif

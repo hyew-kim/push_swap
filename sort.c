@@ -1,24 +1,55 @@
 #include "push_swap.h"
-#include <stdio.h>
-void	sort(t_stack *stack)
+void	print(t_stack *stack);
+void	setSort(t_stack *stack)
 {
 	t_node	*a;
 	t_node	*b;
+	int		*arr;
+	t_node	*node;
 
 	a = stack->a;
 	b = stack->b;
-	// getPivot 실행 전에 빈 스택인 경우 실행 안되게 하기
-	pb(stack);
-	printf("%d %d", getPivot(a, size(a)), getPivot(b, size(b)));
+	arr = (int *)malloc(sizeof(int) * size(a));
+	if (arr == NULL)
+		return ;
+	indexing(a, &arr);
+	node = a->next;
+	while (node)
+	{
+		node->content = *arr;
+		node = node->next;
+		arr++;
+	}
+	sort(stack);
+	print(stack);
+	return ;
 }
+#include <stdio.h>
+void	print(t_stack *stack)
+{
+	t_node *a = stack->a->next;
+	t_node *b = stack->b->next;
 
-int	getPivot(t_node *head, int length)
+	while (a)
+	{
+		printf("%d\n", a->content);
+		a = a->next;
+	}
+	while (b)
+	{
+		printf("%d\n", b->content);
+		a = a->next;
+	}
+}
+void	indexing(t_node *head, int **arr)
 {
 	int		cnt;
+	int		i;
 	t_node	*node;
 	t_node	*next_node;
 
 	node = head->next;
+	i = -1;
 	while (node)
 	{
 		next_node = head->next;
@@ -30,13 +61,47 @@ int	getPivot(t_node *head, int length)
 				next_node = next_node->next;
 				continue;
 			}
-			if (node->content < next_node->content)
+			if (node->content > next_node->content)
 				++cnt;
 			next_node = next_node->next;
 		}
-		if (cnt == length / 2)
-			return (node->content);
+		(*arr)[++i] = cnt;
 		node = node->next;
 	}
-	return (head->next->content);
+}
+
+void	sort(t_stack *stack)
+{
+	int	len;
+
+	if (isSorted(stack->a))
+		return ;
+	len = size(stack->a);
+	if (len <= 3)
+		return (sortFewElements(stack, len));
+	else if (len <= 5)
+		return (sortFourAndFive(stack, len));
+	return (aToB(stack));
+}
+
+int	isSorted(t_node *head)
+{
+	t_node	*node;
+
+	node = head;
+	while (node->next)
+	{
+		if (node->content >= node->next->content)
+			return (0);
+		node = node->next;
+	}
+	return (1);
+}
+
+void	aToB(t_stack *stack)
+{
+	int	num;
+	int	chunk;
+
+	return ;
 }
