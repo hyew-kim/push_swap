@@ -74,7 +74,8 @@ void	popFront(t_node *head)
 		return ;
 	del = head->next;
 	head->next = del->next;
-	del->next->prev = head;
+	if (del->next)
+		del->next->prev = head;
 	free(del);
 	return ;
 }
@@ -87,9 +88,7 @@ void	popBack(t_node *head)
 		return ;
 	del = head;
 	while (del->next)
-	{
 		del = del->next;
-	}
 	del->prev->next = NULL;
 	free(del);
 }

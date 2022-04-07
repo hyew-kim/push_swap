@@ -28,31 +28,105 @@ void	sortFewElements(t_stack *stack, int len)
 		else if (flag == 5)
 			rra(stack);
 	}
-	return ;
+}
+
+int	getIndexOfMin(t_node *head)
+{
+	t_node *node;
+	int		min;
+
+	node = head->next;
+	min = INT32_MAX;
+	while (node)
+	{
+		if (min > node->content)
+			min = node->content;
+		node = node->next;
+	}
+	return (min);
+}
+
+int	getIndexOfMax(t_node *head)
+{
+	t_node *node;
+	int		max;
+
+	node = head->next;
+	max = -1;
+	while (node)
+	{
+		if (max < node->content)
+			max = node->content;
+		node = node->next;
+	}
+	return (max);
 }
 
 int	checkCase(t_node *head)
 {
 	t_node	*node;
+	int		min;
+	int		max;
 
 	node = head->next;
-	if (node->content == 0)
+	min = getIndexOfMin(head);
+	max = getIndexOfMax(head);
+	if (node->content == min)
 		return (4);
-	else if (node->content == 1)
+	else if (node->content == max)
 	{
-		if (node->next->content == 0)
+		if (node->next->content == min)
+			return (3);
+		return (2);
+	}
+	else
+	{
+		if (node->next->content == min)
 			return (1);
 		return (5);
 	}
-	else if (node->content == 2)
-	{
-		if (node->next->content == 1)
-			return (2);
-		return (3);
-	}
 }
 
-void	sortFourAndFive(t_stack *stack, int len)
+void	sortFour(t_stack *stack, int len)
 {
+	int	minIdx;
+	t_node	*a;
+
+	a = stack->a;
+	minIdx = getIndexOfMin(a);
+	while (a->next->content != minIdx)
+	{
+		if (minIdx < len / 2)
+			ra(stack);
+		else
+			rra(stack);
+	}
+	if (isSorted(a))
+		return ;
+	pb(stack);
+	sortFewElements(stack, 3);
+	pa(stack);
 	return;
+}
+
+void sortFive(t_stack *stack, int len)
+{
+	t_node	*a;
+	int		minIdx;
+
+	a = stack->a;
+	minIdx = getIndexOfMin(a);
+	while (a->next->content != minIdx)
+	{
+		if (minIdx < len / 2)
+			ra(stack);
+		else
+			rra(stack);
+	}
+	pb(stack);
+	if (isSorted(a))
+		return ;
+	sortFour(stack, len - 1);
+	pa(stack);
+	return ;
 }

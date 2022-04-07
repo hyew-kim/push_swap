@@ -46,9 +46,11 @@ void				rrb(t_stack *stack);
 void				rrr(t_stack *stack);
 void				indexing(t_node *head, int **arr);
 void				sort(t_stack *stack);
+void	print(t_stack *stack);
 int					isSorted(t_node *head);
 void				sortFewElements(t_stack *stack, int len);
-void				sortFourAndFive(t_stack *stack, int len);
-void				aToB(t_stack *stack);
+void				sortFour(t_stack *stack, int len);
+void				sortFive(t_stack *stack, int len);
+void				aToB(t_stack *stack, int len);
 int					checkCase(t_node *head);
 #endif

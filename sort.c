@@ -1,5 +1,5 @@
 #include "push_swap.h"
-void	print(t_stack *stack);
+
 void	setSort(t_stack *stack)
 {
 	t_node	*a;
@@ -30,15 +30,17 @@ void	print(t_stack *stack)
 	t_node *a = stack->a->next;
 	t_node *b = stack->b->next;
 
+	printf("A\n----\n");
 	while (a)
 	{
 		printf("%d\n", a->content);
 		a = a->next;
 	}
+	printf("B\n---\n");
 	while (b)
 	{
 		printf("%d\n", b->content);
-		a = a->next;
+		b = b->next;
 	}
 }
 void	indexing(t_node *head, int **arr)
@@ -79,16 +81,18 @@ void	sort(t_stack *stack)
 	len = size(stack->a);
 	if (len <= 3)
 		return (sortFewElements(stack, len));
-	else if (len <= 5)
-		return (sortFourAndFive(stack, len));
-	return (aToB(stack));
+	else if (len == 4)
+		return (sortFour(stack, len));
+	else if (len == 5)
+		return (sortFive(stack, len));
+	return (aToB(stack, len));
 }
 
 int	isSorted(t_node *head)
 {
 	t_node	*node;
 
-	node = head;
+	node = head->next;
 	while (node->next)
 	{
 		if (node->content >= node->next->content)
@@ -98,10 +102,11 @@ int	isSorted(t_node *head)
 	return (1);
 }
 
-void	aToB(t_stack *stack)
+void	aToB(t_stack *stack, int len)
 {
 	int	num;
 	int	chunk;
 
+	num = 0;
 	return ;
 }
