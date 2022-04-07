@@ -123,9 +123,9 @@ void sortFive(t_stack *stack, int len)
 		else
 			rra(stack);
 	}
-	pb(stack);
 	if (isSorted(a))
 		return ;
+	pb(stack);
 	sortFour(stack, len - 1);
 	pa(stack);
 	return ;

@@ -21,7 +21,7 @@ void	setSort(t_stack *stack)
 		arr++;
 	}
 	sort(stack);
-	print(stack);
+	//print(stack);
 	return ;
 }
 #include <stdio.h>
@@ -85,7 +85,8 @@ void	sort(t_stack *stack)
 		return (sortFour(stack, len));
 	else if (len == 5)
 		return (sortFive(stack, len));
-	return (aToB(stack, len));
+	aToB(stack, len);
+	bToA(stack, len);
 }
 
 int	isSorted(t_node *head)
@@ -102,11 +103,69 @@ int	isSorted(t_node *head)
 	return (1);
 }
 
+int		getChunk(int len)
+{
+	if (len <= 100)
+		return (15);
+	else if (len <= 500)
+		return (30);
+	else if (len <= 1000)
+		return (45);
+	else if (len <= 2000)
+		return (65);
+	else
+		return (150);
+}
+
 void	aToB(t_stack *stack, int len)
 {
-	int	num;
-	int	chunk;
+	int		num;
+	int		chunk;
+	t_node	*a;
 
 	num = 0;
+	chunk = getChunk(len);
+	a = stack->a;
+	while (!empty(a))
+	{
+		if (a->next->content <= num)
+		{
+			pb(stack);
+			num++;
+		}
+		else if (a->next->content <= num + chunk)
+		{
+			pb(stack);
+			rb(stack);
+			num++;
+		}
+		else
+			ra(stack);
+	}
+	return ;
+}
+
+void	bToA(t_stack *stack, int len)
+{
+	t_node	*b;
+	int		maxIdx;
+
+	b = stack->b;
+	print(stack);
+	while (!empty(b))
+	{
+		maxIdx = getIndexOfMax(b);
+		if (maxIdx < len / 2)
+		{
+			while (b->next->content != maxIdx)
+				rb(stack);
+		}
+		else
+		{
+			while (b->next->content != maxIdx)
+				rrb(stack);
+		}
+		pa(stack);	
+	}
 	return ;
 }
