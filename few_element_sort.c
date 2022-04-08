@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   few_element_sort.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyewkim <hyewkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 20:06:07 by hyewkim           #+#    #+#             */
+/*   Updated: 2022/04/08 20:06:10 by hyewkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_few_elements(t_stack *stack, int len)
@@ -8,11 +20,12 @@ void	sort_few_elements(t_stack *stack, int len)
 		sa(stack);
 	else if (len == 3)
 		sort_three(stack);
+	return ;
 }
 
 void	sort_three(t_stack *stack)
 {
-	int flag;
+	int	flag;
 
 	flag = check_case(stack->a);
 	if (flag == 1)
@@ -78,10 +91,10 @@ void	sort_four(t_stack *stack, int len)
 	pb(stack);
 	sort_three(stack);
 	pa(stack);
-	return;
+	return ;
 }
 
-void sort_five(t_stack *stack, int len)
+void	sort_five(t_stack *stack, int len)
 {
 	t_node	*a;
 	int		min;

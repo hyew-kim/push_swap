@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyewkim <hyewkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 20:09:01 by hyewkim           #+#    #+#             */
+/*   Updated: 2022/04/08 20:09:03 by hyewkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -5,14 +17,14 @@
 # include "./libft/libft.h"
 
 /*struct*/
-typedef	struct		s_node
+typedef struct s_node
 {
 	int				content;
 	struct s_node	*prev;
 	struct s_node	*next;
 }					t_node;
 
-typedef	struct		s_stack
+typedef struct s_stack
 {
 	t_node			*a;
 	t_node			*b;

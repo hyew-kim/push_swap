@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyewonkim <hyewonkim@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 22:41:57 by hyewkim           #+#    #+#             */
-/*   Updated: 2022/03/17 01:46:07 by hyewonkim        ###   ########.fr       */
+/*   Updated: 2022/04/08 19:47:24 by hyewkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = join(0, 0, s1, s2);
 	return (str);
 }
-

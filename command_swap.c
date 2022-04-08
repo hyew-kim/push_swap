@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_swap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyewkim <hyewkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 20:06:57 by hyewkim           #+#    #+#             */
+/*   Updated: 2022/04/08 20:06:58 by hyewkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sa(t_stack *stack)
@@ -16,7 +28,7 @@ void	sa(t_stack *stack)
 	first->content = second->content;
 	second->content = tmp;
 	ft_putendl_fd("sa", 1);
-	return;
+	return ;
 }
 
 void	sb(t_stack *stack)
@@ -35,8 +47,9 @@ void	sb(t_stack *stack)
 	first->content = second->content;
 	second->content = tmp;
 	ft_putendl_fd("sb", 1);
-	return;
+	return ;
 }
+
 void	ss(t_stack *stack)
 {
 	sa(stack);

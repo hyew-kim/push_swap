@@ -7,6 +7,7 @@ NAME = push_swap
 SRC = push_swap.c\
 	push_swap_utill.c\
 	list.c\
+	list2.c\
 	sort.c\
 	command_swap.c\
 	command_push.c\

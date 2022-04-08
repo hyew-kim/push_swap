@@ -6,7 +6,7 @@
 /*   By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 17:30:47 by hyewkim           #+#    #+#             */
-/*   Updated: 2022/03/22 15:19:24 by hyewkim          ###   ########.fr       */
+/*   Updated: 2022/04/08 19:49:46 by hyewkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_next_line(int fd, char **line)
 		{
 			free(buf);
 			return (return_line_in_nl(&backup[fd], line, \
-			 ft_strchr((const char *)backup[fd], '\n')));
+			ft_strchr((const char *)backup[fd], '\n')));
 		}
 	}
 	free(buf);

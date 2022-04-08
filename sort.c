@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 19:58:30 by hyewkim           #+#    #+#             */
+/*   Updated: 2022/04/08 20:20:55 by hyewkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	set_sort(t_stack *stack)
@@ -42,7 +54,7 @@ void	indexing(t_node *head, int **arr)
 			if (next_node == node)
 			{
 				next_node = next_node->next;
-				continue;
+				continue ;
 			}
 			if (node->content > next_node->content)
 				++cnt;
@@ -66,36 +78,7 @@ void	sort(t_stack *stack)
 		return (sort_four(stack, len));
 	else if (len == 5)
 		return (sort_five(stack, len));
-	return(a_to_b(stack, len));
-}
-
-int	get_pivot(t_node *head, int length)
-{
-	int		cnt;
-	t_node	*node;
-	t_node	*next_node;
-
-	node = head->next;
-	while (node)
-	{
-		next_node = head->next;
-		cnt = 0;
-		while (next_node)
-		{
-			if (next_node == node)
-			{
-				next_node = next_node->next;
-				continue;
-			}
-			if (node->content < next_node->content)
-				++cnt;
-			next_node = next_node->next;
-		}
-		if (cnt == length / 2)
-			return (node->content);
-		node = node->next;
-	}
-	return (head->next->content);
+	return (a_to_b(stack, len));
 }
 
 void	a_to_b(t_stack *stack, int len)
@@ -104,23 +87,17 @@ void	a_to_b(t_stack *stack, int len)
 	int	pivot;
 	int	cnt_ra;
 	int	cnt_pb;
-	
+
 	if (is_done_a(stack, len))
 		return ;
 	pivot = get_pivot(stack->a, len);
 	initialize_three(&cnt_ra, &cnt_pb, &i);
 	while (++i <= len && is_possible_pb(stack->a, pivot))
 	{
-		if (stack->a->next->content > pivot)
-		{
+		if (stack->a->next->content > pivot && ++cnt_ra)
 			ra(stack);
-			cnt_ra++;
-		}
-		else
-		{
+		else if (stack->a->next->content <= pivot && ++cnt_pb)
 			pb(stack);
-			cnt_pb++;
-		}
 	}
 	i = -1;
 	while (++i < cnt_ra)
@@ -139,19 +116,13 @@ void	b_to_a(t_stack *stack, int len)
 	if (is_done_b(stack, len))
 		return ;
 	pivot = get_pivot(stack->b, len);
-	initialize_three(&cnt_rb, &cnt_pa, &i);	
+	initialize_three(&cnt_rb, &cnt_pa, &i);
 	while (++i <= len && is_possible_pa(stack->b, pivot))
 	{
-		if (stack->b->next->content > pivot)
-		{
+		if (stack->b->next->content > pivot && ++cnt_pa)
 			pa(stack);
-			cnt_pa++;
-		}
-		else
-		{
+		else if (stack->b->next->content <= pivot && ++cnt_rb)
 			rb(stack);
-			cnt_rb++;
-		}
 	}
 	i = -1;
 	while (++i < cnt_rb)

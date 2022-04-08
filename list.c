@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 19:51:58 by hyewkim           #+#    #+#             */
+/*   Updated: 2022/04/08 20:09:32 by hyewkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_node	*create_node(int content)
@@ -11,26 +23,6 @@ t_node	*create_node(int content)
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
-}
-
-int	empty(t_node *head)
-{
-	if (head->next == NULL)
-		return (1);
-	else
-		return (0);
-}
-
-t_node	*back(t_node *head)
-{
-	t_node	*last_node;
-
-	last_node = head;
-	while (last_node->next)
-	{
-		last_node = last_node->next;
-	}
-	return (last_node);
 }
 
 void	push_front(t_node *head, int content)
@@ -89,34 +81,4 @@ void	pop_back(t_node *head)
 		del = del->next;
 	del->prev->next = NULL;
 	free(del);
-}
-
-int	find_value(t_node *head, int value)
-{
-	t_node	*find;
-
-	find = head->next;
-	while (find)
-	{
-		if (find->content == value)
-			return (1);
-		find = find->next;
-	}
-	return (0);
-}
-
-int	size(t_node *head)
-{
-	/*head and tail 제외*/
-	t_node	*node;
-	int		len;
-
-	node = head->next;
-	len = 0;
-	while (node)
-	{
-		++len;
-		node = node->next;
-	}
-	return (len);
 }

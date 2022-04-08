@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyewkim <hyewkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 20:01:53 by hyewkim           #+#    #+#             */
+/*   Updated: 2022/04/08 20:01:59 by hyewkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	issorted(t_node *head, int flag)
@@ -18,7 +30,7 @@ int	issorted(t_node *head, int flag)
 
 int	get_value_min(t_node *head)
 {
-	t_node *node;
+	t_node	*node;
 	int		min;
 
 	node = head->next;
@@ -34,7 +46,7 @@ int	get_value_min(t_node *head)
 
 int	get_index_min(t_node *head)
 {
-	t_node *node;
+	t_node	*node;
 	int		min;
 	int		idx;
 
@@ -44,7 +56,7 @@ int	get_index_min(t_node *head)
 	while (node)
 	{
 		if (min == node->content)
-			break;
+			break ;
 		node = node->next;
 		idx++;
 	}
@@ -53,7 +65,7 @@ int	get_index_min(t_node *head)
 
 int	get_value_max(t_node *head)
 {
-	t_node *node;
+	t_node	*node;
 	int		max;
 
 	node = head->next;
@@ -69,7 +81,7 @@ int	get_value_max(t_node *head)
 
 int	get_index_max(t_node *head)
 {
-	t_node *node;
+	t_node	*node;
 	int		max;
 	int		idx;
 
@@ -79,7 +91,7 @@ int	get_index_max(t_node *head)
 	while (node)
 	{
 		if (max == node->content)
-			break;
+			break ;
 		node = node->next;
 		idx++;
 	}
