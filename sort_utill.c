@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	isSorted(t_node *head, int flag)
+int	issorted(t_node *head, int flag)
 {
 	t_node	*node;
 
@@ -16,7 +16,7 @@ int	isSorted(t_node *head, int flag)
 	return (1);
 }
 
-int	getValueOfMin(t_node *head)
+int	get_value_min(t_node *head)
 {
 	t_node *node;
 	int		min;
@@ -32,14 +32,14 @@ int	getValueOfMin(t_node *head)
 	return (min);
 }
 
-int	getIndexOfMin(t_node *head)
+int	get_index_min(t_node *head)
 {
 	t_node *node;
 	int		min;
 	int		idx;
 
 	node = head->next;
-	min = getValueOfMin(head);
+	min = get_value_min(head);
 	idx = 0;
 	while (node)
 	{
@@ -51,7 +51,7 @@ int	getIndexOfMin(t_node *head)
 	return (idx);
 }
 
-int	getValueOfMax(t_node *head)
+int	get_value_max(t_node *head)
 {
 	t_node *node;
 	int		max;
@@ -67,14 +67,14 @@ int	getValueOfMax(t_node *head)
 	return (max);
 }
 
-int	getIndexOfMax(t_node *head)
+int	get_index_max(t_node *head)
 {
 	t_node *node;
 	int		max;
 	int		idx;
 
 	node = head->next;
-	max = getValueOfMax(head);
+	max = get_value_max(head);
 	idx = 0;
 	while (node)
 	{

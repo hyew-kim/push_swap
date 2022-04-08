@@ -9,8 +9,8 @@ void	rra(t_stack *stack)
 		return ;
 	head = stack->a;
 	last_node = back(head);
-	pushFront(head, last_node->content);
-	popBack(head);
+	push_front(head, last_node->content);
+	pop_back(head);
 	ft_putendl_fd("rra", 1);
 	return ;
 }
@@ -24,8 +24,8 @@ void	rrb(t_stack *stack)
 		return ;
 	head = stack->b;
 	last_node = back(head);
-	pushFront(head, last_node->content);
-	popBack(head);
+	push_front(head, last_node->content);
+	pop_back(head);
 	ft_putendl_fd("rrb", 1);
 	return ;
 }

@@ -1,13 +1,13 @@
 #include "libft.h"
 
-void	initializeTwo(int *val1, int *val2)
+void	initialize_two(int *val1, int *val2)
 {
 	*val1 = 0;
 	*val2 = 0;
 	return ;
 }
 
-void	initializeThree(int *val1, int *val2, int *val3)
+void	initialize_three(int *val1, int *val2, int *val3)
 {
 	*val1 = 0;
 	*val2 = 0;

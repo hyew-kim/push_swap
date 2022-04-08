@@ -3,37 +3,37 @@
 int	main(int argc, char *argv[])
 {
 	t_stack	stack;
-	/*Head 뒤부터 유효한 값!*/
-	stack.a = createNode(0);
-	stack.b = createNode(0);
+
+	stack.a = create_node(0);
+	stack.b = create_node(0);
 	if (stack.a == NULL || stack.b == NULL)
-		printError(&stack);
-	checkInput(argc, argv, &stack);
-	setSort(&stack);
-	freeStack(&stack);
+		print_error(&stack);
+	check_input(argc, argv, &stack);
+	set_sort(&stack);
+	free_stack(&stack);
 	exit(EXIT_SUCCESS);
 }
 
-void	checkInput(int argc, char *argv[], t_stack *stack)
+void	check_input(int argc, char *argv[], t_stack *stack)
 {
 	int		i;
 	int		j;
 	char	**arr;
 
 	if (argc < 2)
-		printError(stack);
+		print_error(stack);
 	i = 0;
 	arr = NULL;
 	while (++i < argc)
 	{
 		if (ft_strchr(argv[i], ' ') == -1)
-			checkArr(argv[i], stack);
+			check_arr(argv[i], stack);
 		else
 		{
 			arr = ft_split(argv[i], ' ');
 			j = -1;
 			while (arr[++j])
-				checkArr(arr[j], stack);
+				check_arr(arr[j], stack);
 		}
 	}
 	return ;
@@ -66,53 +66,29 @@ static long long	ft_atol(const char *str)
 	return (neg * num);
 }
 
-void	checkArr(char *arr, t_stack *stack)
+void	check_arr(char *arr, t_stack *stack)
 {
 	int			i;
 	long long	num;
 
-	while (++i < ft_strlen(arr))
+	i = 0;
+	while (++i < (int)ft_strlen(arr))
 	{
-		if (i != 0 && !ft_isdigit(arr[i])) // 부호체크
-			printError(stack);
+		if (i != 0 && !ft_isdigit(arr[i]))
+			print_error(stack);
 	}
 	num = ft_atol(arr);
 	if (!ft_isdigit(arr[0]))
 		i--;
 	if (num > INT32_MAX || num < INT32_MIN)
-		printError(stack);
-	setStack(stack, num);
+		print_error(stack);
+	set_stack(stack, num);
 }
 
-void	setStack(t_stack *stack, int num)
+void	set_stack(t_stack *stack, int num)
 {
-	if (findValue(stack->a, num))
-		printError(stack);
-	pushBack(stack->a, num);
+	if (find_value(stack->a, num))
+		print_error(stack);
+	push_back(stack->a, num);
 	return ;
-}
-
-void	freeStack(t_stack *stack)
-{
-	int	lenA;
-	int	lenB;
-
-	if (stack->a == NULL || stack->b == NULL)
-		return ;
-	lenA = size(stack->a);
-	lenB = size(stack->b);
-	while (lenA-- > 0)
-		popBack(stack->a);
-	while (lenB-- > 0)
-		popBack(stack->b);
-	free(stack->a);
-	free(stack->b);
-	return ;
-}
-
-void	printError(t_stack *stack)
-{
-	ft_putstr_fd("Error\n", 2);
-	freeStack(stack);
-	exit(EXIT_FAILURE);
 }

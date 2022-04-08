@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	setSort(t_stack *stack)
+void	set_sort(t_stack *stack)
 {
 	t_node	*a;
 	t_node	*b;
@@ -21,28 +21,9 @@ void	setSort(t_stack *stack)
 		arr++;
 	}
 	sort(stack);
-	//print(stack);
 	return ;
 }
-#include <stdio.h>
-void	print(t_stack *stack)
-{
-	t_node *a = stack->a->next;
-	t_node *b = stack->b->next;
 
-	printf("A\n----\n");
-	while (a)
-	{
-		printf("%d\n", a->content);
-		a = a->next;
-	}
-	printf("B\n---\n");
-	while (b)
-	{
-		printf("%d\n", b->content);
-		b = b->next;
-	}
-}
 void	indexing(t_node *head, int **arr)
 {
 	int		cnt;
@@ -76,33 +57,19 @@ void	sort(t_stack *stack)
 {
 	int	len;
 
-	if (isSorted(stack->a, 0))
+	if (issorted(stack->a, 0))
 		return ;
 	len = size(stack->a);
 	if (len <= 3)
-		return (sortFewElements(stack, len));
+		return (sort_few_elements(stack, len));
 	else if (len == 4)
-		return (sortFour(stack, len));
+		return (sort_four(stack, len));
 	else if (len == 5)
-		return (sortFive(stack, len));
-	return(aToB(stack, len));
+		return (sort_five(stack, len));
+	return(a_to_b(stack, len));
 }
 
-int	isPossiblePb(t_node *head, int pivot)
-{
-	t_node	*node;
-
-	node = head->next;
-	while (node)
-	{
-		if (node->content <= pivot)
-			return (1);
-		node = node->next;
-	}
-	return (0);
-}
-
-int	getPivot(t_node *head, int length)
+int	get_pivot(t_node *head, int length)
 {
 	int		cnt;
 	t_node	*node;
@@ -131,114 +98,65 @@ int	getPivot(t_node *head, int length)
 	return (head->next->content);
 }
 
-int	checkEndA(t_stack *stack, int len)
-{
-	if (len == 1 || isSorted(stack->a, 0))
-		return (1);
-	if (len == 2)
-	{
-		sortFewElements(stack, len);
-		return (1);
-	}
-	return (0);
-}
-
-void	aToB(t_stack *stack, int len)
+void	a_to_b(t_stack *stack, int len)
 {
 	int	i;
 	int	pivot;
-	int	cntOfRa;
-	int	cntOfPb;
+	int	cnt_ra;
+	int	cnt_pb;
 	
-	//ft_putnbr_fd(len, 1);
-	//ft_putchar_fd('\n', 1);
-	if (checkEndA(stack, len))
+	if (is_done_a(stack, len))
 		return ;
-	pivot = getPivot(stack->a, len);
-	initializeThree(&cntOfRa, &cntOfPb, &i);
-	while (++i <= len && isPossiblePb(stack->a, pivot))
+	pivot = get_pivot(stack->a, len);
+	initialize_three(&cnt_ra, &cnt_pb, &i);
+	while (++i <= len && is_possible_pb(stack->a, pivot))
 	{
-		//ft_putnbr_fd(pivot, 1);
-		//ft_putendl_fd(" a pivot", 1);
 		if (stack->a->next->content > pivot)
 		{
 			ra(stack);
-			cntOfRa++;
+			cnt_ra++;
 		}
 		else
 		{
 			pb(stack);
-			cntOfPb++;
+			cnt_pb++;
 		}
 	}
 	i = -1;
-	while (++i < cntOfRa)
+	while (++i < cnt_ra)
 		rra(stack);
-	//ft_putnbr_fd(cntOfPb, 1);
-	//ft_putendl_fd(" pb value\n", 1);
-	aToB(stack, len - cntOfPb);
-	bToA(stack, cntOfPb);
-}
-int		checkEnd(t_stack *stack, int len)
-{
-	if (len == 1)
-	{
-		pa(stack);
-		return (1);
-	}	
-	if (isSorted(stack->b, 1))
-	{
-		while (len-- > 0) 
-			pa(stack);
-		return (1);
-	}
-	return (0);
+	a_to_b(stack, len - cnt_pb);
+	b_to_a(stack, cnt_pb);
 }
 
-int	isPossiblePa(t_node *head, int pivot)
-{
-	t_node	*node;
-
-	node = head->next;
-	while (node)
-	{
-		if (node->content > pivot)
-			return (1);
-		node = node->next;
-	}
-	return (0);
-}
-void	bToA(t_stack *stack, int len)
+void	b_to_a(t_stack *stack, int len)
 {
 	int		pivot;
-	int		cntOfRb;
-	int		cntOfPa;
+	int		cnt_rb;
+	int		cnt_pa;
 	int		i;
-//3 4 0 2 1
-	//printf("B len: %d\n", len);
-	if (checkEnd(stack, len))
+
+	if (is_done_b(stack, len))
 		return ;
-	i = -1;
-	pivot = getPivot(stack->b, len);
-	initializeTwo(&cntOfRb, &cntOfPa);	
-	while (++i < len && isPossiblePa(stack->b, pivot))
+	pivot = get_pivot(stack->b, len);
+	initialize_three(&cnt_rb, &cnt_pa, &i);	
+	while (++i <= len && is_possible_pa(stack->b, pivot))
 	{
-		//printf("pivot: %d\n", pivot);
 		if (stack->b->next->content > pivot)
 		{
 			pa(stack);
-			cntOfPa++;
+			cnt_pa++;
 		}
 		else
 		{
 			rb(stack);
-			cntOfRb++;
+			cnt_rb++;
 		}
 	}
 	i = -1;
-	while (++i < cntOfRb)
+	while (++i < cnt_rb)
 		rrb(stack);
-	aToB(stack, cntOfPa);
-	bToA(stack, len - cntOfPa);
+	a_to_b(stack, cnt_pa);
+	b_to_a(stack, len - cnt_pa);
 	return ;
 }

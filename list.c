@@ -1,8 +1,6 @@
 #include "push_swap.h"
-/*List의 정보는 head에 담겨있다 !*/
-/*head 값 안 담음, tail은 null*/
-/*head 유효성 검사 안함*/
-t_node	*createNode(int content)
+
+t_node	*create_node(int content)
 {
 	t_node	*node;
 
@@ -35,12 +33,12 @@ t_node	*back(t_node *head)
 	return (last_node);
 }
 
-void	pushFront(t_node *head, int content)
+void	push_front(t_node *head, int content)
 {
 	t_node	*new;
 	t_node	*head_next;
 
-	new = createNode(content);
+	new = create_node(content);
 	if (new == NULL)
 		return ;
 	head_next = head->next;
@@ -52,12 +50,12 @@ void	pushFront(t_node *head, int content)
 	return ;
 }
 
-void	pushBack(t_node *head, int content)
+void	push_back(t_node *head, int content)
 {
 	t_node	*new;
 	t_node	*last_node;
 
-	new = createNode(content);
+	new = create_node(content);
 	if (new == NULL)
 		return ;
 	last_node = back(head);
@@ -66,7 +64,7 @@ void	pushBack(t_node *head, int content)
 	return ;
 }
 
-void	popFront(t_node *head)
+void	pop_front(t_node *head)
 {
 	t_node	*del;
 
@@ -80,7 +78,7 @@ void	popFront(t_node *head)
 	return ;
 }
 
-void	popBack(t_node *head)
+void	pop_back(t_node *head)
 {
 	t_node	*del;
 
@@ -93,7 +91,7 @@ void	popBack(t_node *head)
 	free(del);
 }
 
-int	findValue(t_node *head, int value)
+int	find_value(t_node *head, int value)
 {
 	t_node	*find;
 

@@ -11,8 +11,8 @@ void	pa(t_stack *stack)
 	if (empty(head_b))
 		return ;
 	top = stack->b->next->content;
-	pushFront(head_a, top);
-	popFront(head_b);
+	push_front(head_a, top);
+	pop_front(head_b);
 	ft_putendl_fd("pa", 1);
 	return ;
 }
@@ -28,8 +28,8 @@ void	pb(t_stack *stack)
 	if (empty(head_a))
 		return ;
 	top = stack->a->next->content;
-	pushFront(head_b, top);
-	popFront(head_a);
+	push_front(head_b, top);
+	pop_front(head_a);
 	ft_putendl_fd("pb", 1);
 	return ;
 }

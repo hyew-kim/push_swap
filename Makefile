@@ -1,11 +1,11 @@
 CC = gcc
-CFLAGS = -g
-#-Wextra -Wall -Werror
+CFLAGS = -Wextra -Wall -Werror
 # -L : 라이브러리 경로 지정
 AR = ar rcs
 
 NAME = push_swap
 SRC = push_swap.c\
+	push_swap_utill.c\
 	list.c\
 	sort.c\
 	command_swap.c\
@@ -14,6 +14,7 @@ SRC = push_swap.c\
 	command_rrotate.c\
 	few_element_sort.c\
 	sort_utill.c\
+	sort_utill2.c\
 	
 OBJS = $(SRC:.c=.o)
 
