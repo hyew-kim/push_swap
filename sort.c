@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyewonkim <hyewonkim@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 19:58:30 by hyewkim           #+#    #+#             */
-/*   Updated: 2022/04/08 20:20:55 by hyewkim          ###   ########.fr       */
+/*   Updated: 2022/04/09 00:04:07 by hyewonkim        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	set_sort(t_stack *stack)
 	t_node	*b;
 	int		*arr;
 	t_node	*node;
+	int 	i;
 
 	a = stack->a;
 	b = stack->b;
@@ -26,12 +27,13 @@ void	set_sort(t_stack *stack)
 		return ;
 	indexing(a, &arr);
 	node = a->next;
-	while (node)
+	i = -1;
+	while (node && ++i)
 	{
-		node->content = *arr;
+		node->content = *(arr + i);
 		node = node->next;
-		arr++;
 	}
+	free(arr);
 	sort(stack);
 	return ;
 }
