@@ -4,7 +4,7 @@ void	sortFewElements(t_stack *stack, int len)
 {
 	int	flag;
 
-	if (len == 1 || isSorted(stack->a))
+	if (len == 1 || isSorted(stack->a, 0))
 		return ;
 	else if (len == 2)
 		sa(stack);
@@ -69,7 +69,7 @@ void	sortFour(t_stack *stack, int len)
 		else
 			rra(stack);
 	}
-	if (isSorted(a))
+	if (isSorted(a, 0))
 		return ;
 	pb(stack);
 	sortFewElements(stack, 3);
@@ -91,7 +91,7 @@ void sortFive(t_stack *stack, int len)
 		else
 			rra(stack);
 	}
-	if (isSorted(a))
+	if (isSorted(a, 0))
 		return ;
 	pb(stack);
 	sortFour(stack, len - 1);

@@ -47,7 +47,7 @@ void				rrr(t_stack *stack);
 void				indexing(t_node *head, int **arr);
 void				sort(t_stack *stack);
 void	print(t_stack *stack);
-int					isSorted(t_node *head);
+int					isSorted(t_node *head, int flag);
 void				sortFewElements(t_stack *stack, int len);
 void				sortFour(t_stack *stack, int len);
 void				sortFive(t_stack *stack, int len);

@@ -1,13 +1,15 @@
 #include "push_swap.h"
 
-int	isSorted(t_node *head)
+int	isSorted(t_node *head, int flag)
 {
 	t_node	*node;
 
 	node = head->next;
 	while (node->next)
 	{
-		if (node->content >= node->next->content)
+		if (!flag && node->content >= node->next->content)
+			return (0);
+		if (flag && node->content < node->next->content)
 			return (0);
 		node = node->next;
 	}
