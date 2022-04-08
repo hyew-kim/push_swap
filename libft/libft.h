@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyewonkim <hyewonkim@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 17:53:31 by hyewkim           #+#    #+#             */
-/*   Updated: 2022/03/30 19:06:10 by hyewkim          ###   ########.fr       */
+/*   Updated: 2022/04/08 13:37:13 by hyewonkim        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <stdlib.h>
 
 /*prototype*/
+void				initializeTwo(int *val1, int *val2);
+void				initializeThree(int *val1, int *val2, int *val3);
 int					get_next_line(int fd, char **line);
 int					check(int fd, char **line, char **buf);
 int					dup_line(char **tmp, char **backup_fd, char **line);

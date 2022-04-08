@@ -30,38 +30,6 @@ void	sortFewElements(t_stack *stack, int len)
 	}
 }
 
-int	getIndexOfMin(t_node *head)
-{
-	t_node *node;
-	int		min;
-
-	node = head->next;
-	min = INT32_MAX;
-	while (node)
-	{
-		if (min > node->content)
-			min = node->content;
-		node = node->next;
-	}
-	return (min);
-}
-
-int	getIndexOfMax(t_node *head)
-{
-	t_node *node;
-	int		max;
-
-	node = head->next;
-	max = -1;
-	while (node)
-	{
-		if (max < node->content)
-			max = node->content;
-		node = node->next;
-	}
-	return (max);
-}
-
 int	checkCase(t_node *head)
 {
 	t_node	*node;
@@ -69,8 +37,8 @@ int	checkCase(t_node *head)
 	int		max;
 
 	node = head->next;
-	min = getIndexOfMin(head);
-	max = getIndexOfMax(head);
+	min = getValueOfMin(head);
+	max = getValueOfMax(head);
 	if (node->content == min)
 		return (4);
 	else if (node->content == max)
@@ -89,14 +57,14 @@ int	checkCase(t_node *head)
 
 void	sortFour(t_stack *stack, int len)
 {
-	int	minIdx;
+	int	min;
 	t_node	*a;
 
 	a = stack->a;
-	minIdx = getIndexOfMin(a);
-	while (a->next->content != minIdx)
+	min = getValueOfMin(a);
+	while (a->next->content != min)
 	{
-		if (minIdx < len / 2)
+		if (getIndexOfMin(a) < len / 2)
 			ra(stack);
 		else
 			rra(stack);
@@ -112,13 +80,13 @@ void	sortFour(t_stack *stack, int len)
 void sortFive(t_stack *stack, int len)
 {
 	t_node	*a;
-	int		minIdx;
+	int		min;
 
 	a = stack->a;
-	minIdx = getIndexOfMin(a);
-	while (a->next->content != minIdx)
+	min = getValueOfMin(a);
+	while (a->next->content != min)
 	{
-		if (minIdx < len / 2)
+		if (getIndexOfMin(a) < len / 2)
 			ra(stack);
 		else
 			rra(stack);

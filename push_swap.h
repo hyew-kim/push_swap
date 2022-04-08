@@ -54,6 +54,8 @@ void				sortFive(t_stack *stack, int len);
 void				aToB(t_stack *stack, int len);
 void				bToA(t_stack *stack, int len);
 int					getChunk(int len);
+int					getValueOfMin(t_node *head);
+int					getValueOfMax(t_node *head);
 int					getIndexOfMin(t_node *head);
 int					getIndexOfMax(t_node *head);
 int					checkCase(t_node *head);

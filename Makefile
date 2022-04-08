@@ -13,7 +13,8 @@ SRC = push_swap.c\
 	command_rotate.c\
 	command_rrotate.c\
 	few_element_sort.c\
-
+	sort_utill.c\
+	
 OBJS = $(SRC:.c=.o)
 
 .c.o:

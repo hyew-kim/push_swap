@@ -85,87 +85,77 @@ void	sort(t_stack *stack)
 		return (sortFour(stack, len));
 	else if (len == 5)
 		return (sortFive(stack, len));
-	aToB(stack, len);
-	bToA(stack, len);
-}
-
-int	isSorted(t_node *head)
-{
-	t_node	*node;
-
-	node = head->next;
-	while (node->next)
-	{
-		if (node->content >= node->next->content)
-			return (0);
-		node = node->next;
-	}
-	return (1);
-}
-
-int		getChunk(int len)
-{
-	if (len <= 100)
-		return (15);
-	else if (len <= 500)
-		return (30);
-	else if (len <= 1000)
-		return (45);
-	else if (len <= 2000)
-		return (65);
-	else
-		return (150);
+	return(aToB(stack, len));
 }
 
 void	aToB(t_stack *stack, int len)
 {
-	int		num;
-	int		chunk;
-	t_node	*a;
-
-	num = 0;
-	chunk = getChunk(len);
-	a = stack->a;
-	while (!empty(a))
+	int	i;
+	int	pivot;
+	int	cntOfRa;
+	int	cntOfPb;
+	
+	ft_putnbr_fd(len, 1);
+	ft_putchar_fd('\n', 1);
+	if (len == 1)
+		return ;
+	pivot = (getValueOfMin(stack->a) + getValueOfMax(stack->a)) / 2;
+	initializeThree(&cntOfRa, &cntOfPb, &i);
+	while (++i <= len)
 	{
-		if (a->next->content <= num)
+		if (stack->a->next->content > pivot)
 		{
-			pb(stack);
-			num++;
-		}
-		else if (a->next->content <= num + chunk)
-		{
-			pb(stack);
-			rb(stack);
-			num++;
+			ra(stack);
+			cntOfRa++;
 		}
 		else
-			ra(stack);
+		{
+			pb(stack);
+			cntOfPb++;
+		}
 	}
-	return ;
+	i = -1;
+	while (++i < cntOfRa)
+		rra(stack);
+	printf("ra: %d pb: %d\n", cntOfRa, cntOfPb);
+	aToB(stack, cntOfRa);
+	bToA(stack, cntOfPb);
 }
 
 void	bToA(t_stack *stack, int len)
 {
-	t_node	*b;
-	int		maxIdx;
-
-	b = stack->b;
-	print(stack);
-	while (!empty(b))
+	int		pivot;
+	int		cntOfRb;
+	int		cntOfPa;
+	int		i;
+//3 4 0 2 1
+	printf("B len: %d\n", len);
+	if (len == 1)
 	{
-		maxIdx = getIndexOfMax(b);
-		if (maxIdx < len / 2)
+		pa(stack);
+		return ;
+	}
+	i = -1;
+	pivot = (getValueOfMin(stack->b) + getValueOfMax(stack->b)) / 2;
+	initializeTwo(&cntOfRb, &cntOfPa);	
+	while (++i < len)
+	{
+		printf("pivot: %d\n", pivot);
+		if (stack->b->next->content > pivot)
 		{
-			while (b->next->content != maxIdx)
-				rb(stack);
+			pa(stack);
+			cntOfPa++;
 		}
 		else
 		{
-			while (b->next->content != maxIdx)
-				rrb(stack);
+			rb(stack);
+			cntOfRb++;
 		}
-		pa(stack);	
 	}
+	i = -1;
+	while (++i < cntOfRb)
+		rrb(stack);
+	aToB(stack, cntOfPa);
+	bToA(stack, len - cntOfPa);
 	return ;
 }

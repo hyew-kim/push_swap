@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyewkim <hyewkim@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyewonkim <hyewonkim@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/10 18:54:39 by hyewkim           #+#    #+#              #
-#    Updated: 2022/03/30 19:13:35 by hyewkim          ###   ########.fr        #
+#    Updated: 2022/04/08 13:37:50 by hyewonkim        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ FUNC =	ft_memset\
 		ft_putnbr_fd \
 		get_next_line \
 		gnl_return_line\
+		initializeVal\
 	
 FUNC_BONUS = ft_lstnew\
 	ft_lstadd_front\
